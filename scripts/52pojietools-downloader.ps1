@@ -7,6 +7,7 @@ $baseUrl = 'https://down.52pojie.cn/'
 [Reflection.Assembly]::LoadWithPartialName("System.Web") | Out-Null
 
 function Process-Page ([string]$url) {
+    Start-Sleep ¨Cs 10
     Write-Debug "Processing $url"
     $resp = Invoke-WebRequest $url -UseBasicParsing
     if ($resp.StatusCode -ne 200) { exit }
