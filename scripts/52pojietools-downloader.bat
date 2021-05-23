@@ -16,7 +16,7 @@ set "TOPDIR=%cd:\=/%"
 title "%~n0"
 :: =====
 
-call powershell %~n0.ps1
+call powershell  -file %~n0.ps1
 if not %errorlevel% == 0 pause && EXIT 1
 
 :: =========================

@@ -29,12 +29,12 @@ function Process-Page ([string]$url) {
     } | ForEach-Object {
         $sublink = $PSItem
         if ($sublink.href.EndsWith('/')) {
-            # ç›®å½•
-            #Write-Debug "ç›®å½• $link"
+            # Ä¿Â¼
+            #Write-Debug "Ä¿Â¼ $link"
             if (-not (Test-Path $sublink.title)) {
                 md $sublink.title | Out-Null
             }
-            Write-Output "è¿›å…¥ç›®å½• $($sublink.title)"
+            Write-Output "½øÈëÄ¿Â¼ $($sublink.title)"
             Push-Location
             Set-Location $sublink.title
             $suburl = $url + $sublink.href
@@ -44,11 +44,11 @@ function Process-Page ([string]$url) {
             if ($sublink.title.StartsWith('Accent')) {
                 Write-Output 'debug'
             }
-            # æ–‡ä»¶
-            #Write-Debug "æ–‡ä»¶ $sublink"
-            if (Test-Path -PathType Leaf -LiteralPath $sublink.title) { return } # æ–‡ä»¶å·²å­˜åœ¨
-            #Write-Output "ä¸‹è½½ $($sublink.title)"
-            Write-Output "ä¸‹è½½ $($url + $sublink.href)"
+            # ÎÄ¼ş
+            #Write-Debug "ÎÄ¼ş $sublink"
+            if (Test-Path -PathType Leaf -LiteralPath $sublink.title) { return } # ÎÄ¼şÒÑ´æÔÚ
+            #Write-Output "ÏÂÔØ $($sublink.title)"
+            Write-Output "ÏÂÔØ $($url + $sublink.href)"
             $fileResp = Invoke-WebRequest ($url + $sublink.href) -OutFile "temp.downloading"
             if ($resp.StatusCode -ne 200) { exit }
             Rename-Item "temp.downloading" $sublink.title
